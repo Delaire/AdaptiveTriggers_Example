@@ -1,0 +1,53 @@
+﻿<UserControl x:Class="AdaptiveTriggers.Win10.Controls.AdaptiveCatItem"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <Grid x:Name="TemplateRoot"
+          Height="250"
+          Width="300"
+          HorizontalAlignment="Stretch"
+          Margin="2"
+          VerticalAlignment="Top">
+        <VisualStateManager.VisualStateGroups>
+            <VisualStateGroup x:Name="VisualStateGroup">
+                <VisualState x:Name="VisualStateNarrow">
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger x:Name="VisualStateNarrowTrigger" MinWindowWidth="0" />
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <Setter Target="TemplateRoot.Width" Value="Auto" />
+                    </VisualState.Setters>
+                </VisualState>
+                <VisualState x:Name="VisualStateNormal">
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger x:Name="VisualStateNormalTrigger" MinWindowWidth="521" />
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <Setter Target="TemplateRoot.Width" Value="300" />
+                    </VisualState.Setters>
+                </VisualState>
+            </VisualStateGroup>
+        </VisualStateManager.VisualStateGroups>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="190" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <Image Grid.Row="0"
+               HorizontalAlignment="Center"
+               Source="{Binding ThumbnailUri}"
+               Stretch="UniformToFill" />
+
+        <Grid Grid.Row="1"
+              HorizontalAlignment="Stretch"
+              VerticalAlignment="Top"
+              Background="Transparent">
+
+            <TextBlock Grid.Row="0"
+                       Margin="5,5,5,5"
+                       Text="{Binding Title,
+                                      FallbackValue='This is the cat image of the year let the work begin'}"
+                       TextWrapping="Wrap" />
+        </Grid>
+    </Grid>
+</UserControl>
